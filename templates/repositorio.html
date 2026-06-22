@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repositorio de Documentos</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; }
+        
+        /* Estilos para los estados */
+        .estado-tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        .vigente { background-color: #28a745; } /* Verde */
+        .revocado { background-color: #dc3545; } /* Rojo */
+        .cancelado { background-color: #6c757d; } /* Gris oscuro */
+        
+        .logout-btn { color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Documentos Registrados</h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Cerrar Sesión</a>
+    </div>
+
+    <a href="/subir">Subir nuevo documento</a>
+    
+    <table border="1">
+        <tr>
+            <th>Folio</th>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Área</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        {% for doc in documentos %}
+        <tr>
+            <td>{{ doc.folio }}</td>
+            <td>{{ doc.titulo }}</td>
+            <td>{{ doc.tipo }}</td>
+            <td>{{ doc.area_emisora }}</td>
+            <td>
+                <span class="estado-tag {{ doc.estado|lower }}">{{ doc.estado }}</span>
+            </td>
+            <td>
+                <a href="{{ url_for('uploaded_file', filename=doc.pdf_con_qr.split('/')[-1]) }}" target="_blank">Descargar</a>
+                
+                {% if doc.estado == 'Vigente' %}
+                    | 
+                    <a href="{{ url_for('cambiar_estado', id=doc.id, nuevo_estado='Revocado') }}" class="btn">Revocar</a>
+                    <a href="{{ url_for('cambiar_estado', id=doc.id, nuevo_estado='Cancelado') }}" class="btn">Cancelar</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validación de Documento</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .card { border: 1px solid #ccc; padding: 20px; display: inline-block; border-radius: 10px; }
+        .vigente { color: green; font-size: 24px; font-weight: bold; }
+        .revocado, .cancelado { color: red; font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Resultado de Validación</h1>
+        <p><strong>Folio:</strong> {{ doc.folio }}</p>
+        <p><strong>Título:</strong> {{ doc.titulo }}</p>
+        <p><strong>Estado:</strong> 
+            <span class="{{ doc.estado|lower }}">{{ doc.estado }}</span>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir Documento</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        form { display: flex; flex-direction: column; max-width: 400px; gap: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Subir Documento PDF</h1>
+    <form action="/subir" method="post" enctype="multipart/form-data">
+        <input type="text" name="titulo" placeholder="Título" required>
+        <input type="text" name="tipo" placeholder="Tipo de documento" required>
+        <input type="text" name="area" placeholder="Área emisora" required>
+        
+        <label for="posicion"><b>Posición del QR:</b></label>
+        <select name="posicion" id="posicion" required>
+            <option value="sup_der">Superior Derecha</option>
+            <option value="sup_izq">Superior Izquierda</option>
+            <option value="inf_der">Inferior Derecha</option>
+            <option value="inf_izq">Inferior Izquierda</option>
+        </select>
+
+        <label><b>Seleccionar PDF:</b></label>
+        <input type="file" name="file" accept="application/pdf" required>
+        
+        <button type="submit">Generar QR y Subir</button>
+    </form>
+    <br>
+    <a href="/repositorio">Volver al Repositorio</a>
+</body>
+</html>
