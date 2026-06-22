@@ -21,3 +21,6 @@ Sistema web desarrollado para la captura, generación, inyección de códigos QR
 2. Abrir la terminal en la carpeta raíz.
 3. Ejecutar: `docker compose up --build -d`
 4. Acceder en el navegador a: `http://localhost:5000`
+
+---
+Proyecto finalizado.
