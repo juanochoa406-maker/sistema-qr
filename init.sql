@@ -24,3 +24,5 @@ CREATE TABLE IF NOT EXISTS documentos (
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     usuario_id INT
 );
+
+-- Script de inicialización de la base de datos
