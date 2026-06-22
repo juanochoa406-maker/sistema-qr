@@ -1,3 +1,4 @@
+# Módulo de autenticación
 import os
 import uuid
 import qrcode
